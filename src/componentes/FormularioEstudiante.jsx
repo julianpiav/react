@@ -4,10 +4,8 @@ export const FormularioEstudiante = ({ agregar }) => {
     const [id, setId] = useState("");
     const [nombre, setNombre] = useState("");
     const [semestre, setSemestre] = useState("");
-
     const guardarEstudiante = (event) => {
         event.preventDefault();
-
         let estudiante = {
             id: id,
             nombre: nombre,
@@ -34,7 +32,6 @@ export const FormularioEstudiante = ({ agregar }) => {
                     <label htmlFor="semestre">Semestre</label>
                     <input type="text" className="form-control" id="semestre" placeholder="semestre" value={semestre} onChange={(event) => setSemestre(event.target.value)} />
                 </div>
-
                 <button type="submit" className="btn btn-primary">Registrar</button>
             </form>
         </>

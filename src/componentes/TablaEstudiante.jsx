@@ -1,29 +1,15 @@
 import { useState } from "react";
-export const {eliminarPorId} =TablaEstudiante;
 
-
-
-export const TablaEstudiante = ({ listaEstudiantes }) => {
+export const TablaEstudiante = ({ listaEstudiantes }, {eliminar}) => {
     const [search, setSearch] = useState("");
     let estudiantesFiltrados = listaEstudiantes
 
     if(search!=""){
         estudiantesFiltrados= listaEstudiantes.filter((estudiante)=> estudiante.nombre===search);
     }
-
-    const estudiantes=listaEstudiantes;
-
-
-    const eliminarPorId = (id) => {
-        const nuevaLista = estudiantes.filter((estudiante) => estudiante.id !== id);
-        eliminarEstudiante(nuevaLista);
-    };
-
-
-
     return (
         <>
-         <div>
+        <div>
             Buscar estudiante:
         <input type="text" className="form-control" placeholder="Buscar Estudiante" value={search} onChange={(event) => setSearch(event.target.value)} />
 
@@ -44,7 +30,7 @@ export const TablaEstudiante = ({ listaEstudiantes }) => {
                             <td>{estudiante.id}</td>
                             <td>{estudiante.nombre}</td>
                             <td>{estudiante.semestre}</td>
-                            <td> <button className="btn btn-info" onClick={ ()=> eliminarPorId (estudiante.id) }>Eliminar</button></td>
+                            <td> <button className="btn btn-info" onClick={eliminar(estudiante.id)}>Eliminar</button></td>
                             <td> <button className="btn btn-info" >Editar</button></td>
                         </tr>)
                     }
@@ -52,6 +38,4 @@ export const TablaEstudiante = ({ listaEstudiantes }) => {
             </table>
         </>
     )
-
-    nuevaLista;
 }

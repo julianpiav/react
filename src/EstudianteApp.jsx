@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { FormularioEstudiante } from "./componentes/FormularioEstudiante";
 import { TablaEstudiante } from "./componentes/TablaEstudiante";
-import { eliminarPorId } from "./componentes/TablaEstudiante";
 
 export const EstudiantesApp = () => {
 
@@ -11,16 +10,14 @@ export const EstudiantesApp = () => {
     const agregarEstudiante = (estudiante) => {
         setEstudiantes([...estudiantes, estudiante])
     }
-
-    const eliminarEstudiante = ({eliminarPorId}) => {
-        setEstudiantes(eliminarPorId.nuevaLista );
+    const eliminarEstudiante=(id)=>{
+        setEstudiantes(estudiantes.filter((estudiante) => estudiante.id !== id))
     }
-
 
     return (
         <>
             <FormularioEstudiante agregar={(estu) => { agregarEstudiante(estu) }} />
-            <TablaEstudiante listaEstudiantes={estudiantes} />
+            <TablaEstudiante listaEstudiantes={estudiantes} eliminar={(id) => {eliminarEstudiante(id)}}/>
         </>
     )
 }
