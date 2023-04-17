@@ -22,6 +22,7 @@ export const TablaEstudiante = ({ listaEstudiantes }) => {
                         <th scope="col">Id Estudiante</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Semestre</th>
+                        <th scope="col">Facultad</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -31,6 +32,7 @@ export const TablaEstudiante = ({ listaEstudiantes }) => {
                             <td>{estudiante.id}</td>
                             <td>{estudiante.nombre}</td>
                             <td>{estudiante.semestre}</td>
+                            <td>{estudiante.facultad}</td>
                             <td> <button className="btn btn-info" >Editar</button></td>
                         </tr>)
                     }
