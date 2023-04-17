@@ -1,4 +1,7 @@
 import { useState } from "react";
+export const {eliminarPorId} =TablaEstudiante;
+
+
 
 export const TablaEstudiante = ({ listaEstudiantes }) => {
     const [search, setSearch] = useState("");
@@ -7,6 +10,10 @@ export const TablaEstudiante = ({ listaEstudiantes }) => {
     if(search!=""){
         estudiantesFiltrados= listaEstudiantes.filter((estudiante)=> estudiante.nombre===search);
     }
+
+    const estudiantes=listaEstudiantes;
+
+
 
     return (
         <>
@@ -40,4 +47,6 @@ export const TablaEstudiante = ({ listaEstudiantes }) => {
             </table>
         </>
     )
+
+    nuevaLista;
 }
