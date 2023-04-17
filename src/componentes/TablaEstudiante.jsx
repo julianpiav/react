@@ -48,5 +48,4 @@ export const TablaEstudiante = ({ listaEstudiantes }) => {
         </>
     )
 
-    nuevaLista;
 }
