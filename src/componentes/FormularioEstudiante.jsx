@@ -1,4 +1,3 @@
-
 export const FormularioEstudiante = ({ agregar, dato, setDato,edicion,setEdicion ,editar}) => {
 
     const enviar=(estudiante)=>{
