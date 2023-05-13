@@ -1,4 +1,3 @@
-
 export const TablaEstudiante = ({ listaEstudiantes,editarEstudiante, eliminarEstudiante }) => {
 
     return (

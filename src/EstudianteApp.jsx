@@ -7,7 +7,6 @@ import { putEstudiante } from "./Peticiones/putEstudiantes";
 import { deleteEstudiantes } from "./Peticiones/deleteEstudiantes";
 
 
-
 export const EstudiantesApp = () => {
 
     const [estudiantes, setEstudiantes] = useState([]);
