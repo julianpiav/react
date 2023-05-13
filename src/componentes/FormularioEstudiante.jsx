@@ -1,97 +1,55 @@
-export const FormularioEstudiante = ({ agregar, dato, setDato,edicion,setEdicion ,editar}) => {
+import { useState } from "react"
 
-    const enviar=(estudiante)=>{
-        if(edicion===true){
-            editarEstudiante(estudiante)
-        }else{
-            guardarEstudiante(estudiante)   
+export const FormularioEstudiante = ({ agregar }) => {
+    const [id, setId] = useState("");
+    const [nombre, setNombre] = useState("");
+    const [semestre, setSemestre] = useState("");
+    const [facultad,setFacultad] = useState("")
+
+    const guardarEstudiante = (event) => {
+        event.preventDefault();
+
+        let estudiante = {
+            id: id,
+            nombre: nombre,
+            semestre: semestre,
+            facultad: facultad,
         }
+        agregar(estudiante)
+        setId("");
+        setNombre("");
+        setSemestre("");
+        setFacultad("")
+
     }
 
-    const guardarEstudiante = () => {
-        agregar(dato)
-        setDato({
-            nombre: "",
-            semestre: "",
-            facultad: "",
-            programa:""
-        })
-    }
-    const editarEstudiante=()=>{
-        editar(dato)
-        setDato({
-            nombre: "",
-            semestre: "",
-            facultad: "",
-            programa:""
-        })
-        setEdicion(false)
-    }
     return (
         <>
-            <form onSubmit={enviar}>
-                <div className="row">
-                    <div className="col-2 ">
-                        <label htmlFor="nombre">Nombre</label>
-                    </div>
-                    <div className="col-2 ">
-                        <input type="text" required={true} minLength={3} className="form-control" id="nombre" placeholder="Nombre Estudiante" value={dato.nombre} onChange={(event) => setDato({ ...dato, nombre: event.target.value })} />
-                    </div>
+            <form onSubmit={guardarEstudiante}>
+                <div className="form-group ">
+                    <label htmlFor="id">ID Estudiante</label>
+                    <input type="id" className="form-control" id="id" placeholder="Ingrese id" value={id} onChange={(event) => setId(event.target.value)} />
                 </div>
-                <div className="row">
-                    <div className="col-2 ">
-                        <label htmlFor="semestre">Semestre</label>
-                    </div>
-                    <div className="col-2 ">
-                        <select label="Semestre" required={true} value={dato.semestre} onChange={(event) => setDato({ ...dato, semestre: event.target.value })} className="form-control" id="semestre">
-                            <option value="">Seleccione...</option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                            <option value={6}>6</option>
-                            <option value={7}>7</option>
-                            <option value={8}>8</option>
-                            <option value={9}>9</option>
-                            <option value={10}>10</option>
-                        </select>
-                    </div>
+                <div className="form-group">
+                    <label htmlFor="nombre">Nombre</label>
+                    <input type="text" className="form-control" id="nombre" placeholder="nombre" value={nombre} onChange={(event) => setNombre(event.target.value)} />
                 </div>
-                <div className="row">
-                    <div className="col-2 ">
-                        <label htmlFor="facultad">Facultad</label>
-                    </div>
-                    <div className="col-2 ">
-                        <select label="Facultad" required={true} value={dato.facultad} onChange={(event) => setDato({ ...dato, facultad: event.target.value })} className="form-control" id="facultad">
-                            <option value="">Seleccione...</option>
-                            <option value="Ingenieria">Ingenieria</option>
-                            <option value="Medicina">Medicina</option>
-                            <option value="Comunicacion">Comunicacion</option>
-                            <option value="Derecho">Derecho</option>
-                        </select>
-                    </div>
+                <div className="form-group">
+                    <label htmlFor="semestre">Semestre</label>
+                    <input type="text" className="form-control" id="semestre" placeholder="semestre" value={semestre} onChange={(event) => setSemestre(event.target.value)} />
                 </div>
-                <div className="row">
-                    <div className="col-2 ">
-                        <label htmlFor="programa">Programa</label>
-                    </div>
-                    <div className="col-2 ">
-                        <input type="text" required={true} minLength={3} className="form-control" id="programa" placeholder="Escriba Programa" value={dato.programa} onChange={(event) => setDato({ ...dato, programa: event.target.value })} />
-                    </div>
+                <div className="form-group">
+                    <label htmlFor="facultad">Facultad</label>
+                    <select className="form-control" id="facultad" placeholder="Seleccione" value={facultad} onChange={(event) => setFacultad(event.target.value)}>
+                        <option value="Ingenieria">Ingeniería</option>
+                        <option value="Medicina">Medicina</option>
+                        <option value="Comunicacion">Comunicación</option>
+                        <option value="Educacion">Educación</option>
+                        <option value="Derecho">Derecho</option>
+                    </select>
                 </div>
-                <br/>
-                <div className="row">
-                    <div className="col-md-4 text-center" >
-                        {edicion ? (
-                            <button type="submit" className="btn btn-primary">Editar</button>
-                            ) : (
-                            <button type="submit" className="btn btn-primary">Registrar</button>
-                            )
-                        }
-                    </div>
-                </div>
-            </form >
+                <button type="submit" className="btn btn-primary">Registrar</button>
+            </form>
         </>
     )
 }
