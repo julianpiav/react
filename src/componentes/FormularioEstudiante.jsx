@@ -1,28 +1,36 @@
 
-export const FormularioEstudiante = ({ agregar, dato, setDato }) => {
+export const FormularioEstudiante = ({ agregar, dato, setDato,edicion,setEdicion ,editar}) => {
 
-    const guardarEstudiante = (event) => {
-        event.preventDefault();
-        agregar(dato)
-        setDato({
-            id: "",
-            nombre: "",
-            semestre: "",
-            facultad: ""
-        })
+    const enviar=(estudiante)=>{
+        if(edicion===true){
+            editarEstudiante(estudiante)
+        }else{
+            guardarEstudiante(estudiante)   
+        }
     }
 
+    const guardarEstudiante = () => {
+        agregar(dato)
+        setDato({
+            nombre: "",
+            semestre: "",
+            facultad: "",
+            programa:""
+        })
+    }
+    const editarEstudiante=()=>{
+        editar(dato)
+        setDato({
+            nombre: "",
+            semestre: "",
+            facultad: "",
+            programa:""
+        })
+        setEdicion(false)
+    }
     return (
         <>
-            <form onSubmit={guardarEstudiante}>
-                <div className="row">
-                    <div className="col-2 ">
-                        <label htmlFor="id">ID Estudiante</label>
-                    </div>
-                    <div className="col-2 ">
-                        <input type="text" pattern="[0-9]+" required={true}  minLength={6} maxLength={10} className="form-control" id="id" placeholder="Id" value={dato.id} onChange={(event) => setDato({ ...dato, id: event.target.value })} />
-                    </div>
-                </div>
+            <form onSubmit={enviar}>
                 <div className="row">
                     <div className="col-2 ">
                         <label htmlFor="nombre">Nombre</label>
@@ -65,10 +73,23 @@ export const FormularioEstudiante = ({ agregar, dato, setDato }) => {
                         </select>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-2 ">
+                        <label htmlFor="programa">Programa</label>
+                    </div>
+                    <div className="col-2 ">
+                        <input type="text" required={true} minLength={3} className="form-control" id="programa" placeholder="Escriba Programa" value={dato.programa} onChange={(event) => setDato({ ...dato, programa: event.target.value })} />
+                    </div>
+                </div>
                 <br/>
                 <div className="row">
                     <div className="col-md-4 text-center" >
-                        <button type="submit" className="btn btn-primary">Registrar</button>
+                        {edicion ? (
+                            <button type="submit" className="btn btn-primary">Editar</button>
+                            ) : (
+                            <button type="submit" className="btn btn-primary">Registrar</button>
+                            )
+                        }
                     </div>
                 </div>
             </form >
