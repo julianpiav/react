@@ -5,6 +5,7 @@ import { getEstudiantes } from "./Peticiones/getEstudiantes";
 import { postEstudiantes } from "./Peticiones/postEstudiante";
 import { putEstudiante } from "./Peticiones/putEstudiantes";
 import { deleteEstudiantes } from "./Peticiones/deleteEstudiantes";
+import { getEstudiantesPorFacultad } from "./Peticiones/getEstudiantesPorFacultad";
 
 
 export const EstudiantesApp = () => {
@@ -12,6 +13,7 @@ export const EstudiantesApp = () => {
     const [estudiantes, setEstudiantes] = useState([]);
     const [dato, setDato] = useState({ id: "", nombre: "", semestre: "", facultad: "" , programa: ""});
     const [edicion,setEdicion]=useState(false);
+    const [facultadSeleccionada, setFacultadSeleccionada] = useState('');
 
     const agregarEstudiante = (estudiante) => {
         setEstudiantes([...estudiantes, estudiante])
@@ -43,6 +45,12 @@ export const EstudiantesApp = () => {
         const datos = await getEstudiantes();
         setEstudiantes(datos);
     }
+    const filtrarPorFacultad = async () => {
+        if (facultadSeleccionada !== '') {
+            const estudiantesPorFacultad = await getEstudiantesPorFacultad(facultadSeleccionada);
+            setEstudiantes(estudiantesPorFacultad);
+        }
+    }; 
     useEffect(()=>{
         cargueEstudiantes();
     },[])
@@ -56,6 +64,7 @@ export const EstudiantesApp = () => {
                 editar={(estudianteEditado)=>{
                     editarEstudiante(estudianteEditado);
                 }}
+                filtrarPorFacultad={filtrarPorFacultad}
                 />
             <TablaEstudiante listaEstudiantes={estudiantes}
                 editarEstudiante={(estudiante)=>{
@@ -64,7 +73,9 @@ export const EstudiantesApp = () => {
                 }}
                 eliminarEstudiante={(estudiante)=>{
                     eliminarEstudiante(estudiante);
-                }} />
+                }} 
+                setFacultadSeleccionada={setFacultadSeleccionada}
+                filtrarPorFacultad={filtrarPorFacultad}/>
         </>
     )
 }

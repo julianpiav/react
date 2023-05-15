@@ -1,7 +1,30 @@
+import React, { useState } from "react";
 export const TablaEstudiante = ({ listaEstudiantes,editarEstudiante, eliminarEstudiante }) => {
+    const [facultadSeleccionada, setFacultadSeleccionada] = useState("");
 
+    const filtrarPorFacultad = () => {
+      if (facultadSeleccionada !== "") {
+        const estudiantesFiltrados = listaEstudiantes.filter((estudiante) => estudiante.facultad === facultadSeleccionada);
+        return estudiantesFiltrados;
+      } else {
+        return listaEstudiantes;
+      }
+    };
+  
+    const estudiantesMostrados = filtrarPorFacultad();
     return (
         <>
+            <div>
+                <label htmlFor="facultad">Busqueda por Facultad:</label>
+                <select id="facultad" value={facultadSeleccionada} onChange={(e) => setFacultadSeleccionada(e.target.value)}>
+                    <option value="">Seleccione una Facultad</option>
+                    <option value="Ingenieria">Ingenieria</option>
+                    <option value="Medicina">Medicina</option>
+                    <option value="Comunicacion">Comunicacion</option>
+                    <option value="Derecho">Derecho</option>
+                </select>
+                <button onClick={filtrarPorFacultad}>Filtrar</button>
+            </div>
             <table className="table">
                 <thead>
                     <tr>
@@ -15,7 +38,7 @@ export const TablaEstudiante = ({ listaEstudiantes,editarEstudiante, eliminarEst
                 </thead>
                 <tbody>
                     {
-                        listaEstudiantes.map((estudiante) => 
+                        estudiantesMostrados.map((estudiante) => 
                             <tr key={estudiante.id}>
                                 <td>{estudiante.id}</td>
                                 <td>{estudiante.nombre}</td>
