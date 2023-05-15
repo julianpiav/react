@@ -1,5 +1,16 @@
+import React, { useState } from "react";
 export const FormularioEstudiante = ({ agregar, dato, setDato,edicion,setEdicion ,editar}) => {
 
+    // const [facultadSeleccionada, setFacultadSeleccionada] = useState(null);
+
+    // const handleFacultadSeleccionada = (event) => {
+    //     setFacultadSeleccionada(event.target.value);
+    //     getEstudiantesPorFacultad(event.target.value);
+    // };
+
+    // const handleClickBoton = () => {
+    //     console.log(facultadSeleccionada);
+    // }; 
     const enviar=(estudiante)=>{
         if(edicion===true){
             editarEstudiante(estudiante)
@@ -91,6 +102,23 @@ export const FormularioEstudiante = ({ agregar, dato, setDato,edicion,setEdicion
                         }
                     </div>
                 </div>
+                {/* <div className="row">
+                    <div className="col-2 ">
+                        <label htmlFor="Filtar">Filtrar por Facultad </label>
+                    </div>
+                    <div className="col-2 ">
+                        <select label="Filtrar" required={true} onChange={handleFacultadSeleccionada}>
+                            <option value="">Seleccione...</option>
+                            <option value="Ingenieria">Ingenieria</option>
+                            <option value="Medicina">Medicina</option>
+                            <option value="Comunicacion">Comunicacion</option>
+                            <option value="Derecho">Derecho</option>
+                        </select>
+                    </div>
+                    <div className="col-md-4 text-center" >
+                    <button onClick={handleClickBoton}>Filtar</button>
+                    </div>
+                </div> */}
             </form >
         </>
     )
