@@ -57,25 +57,41 @@ export const EstudiantesApp = () => {
 
     return (
         <>
-            <FormularioEstudiante dato={dato} setDato={setDato} edicion={edicion} setEdicion={setEdicion}
-                agregar={(estudianteNuevo) => {
-                    agregarEstudiante(estudianteNuevo);
-                }}
-                editar={(estudianteEditado)=>{
-                    editarEstudiante(estudianteEditado);
-                }}
-                filtrarPorFacultad={filtrarPorFacultad}
-                />
-            <TablaEstudiante listaEstudiantes={estudiantes}
-                editarEstudiante={(estudiante)=>{
-                    setDato(estudiante)
-                    setEdicion(true)
-                }}
-                eliminarEstudiante={(estudiante)=>{
-                    eliminarEstudiante(estudiante);
-                }} 
-                setFacultadSeleccionada={setFacultadSeleccionada}
-                filtrarPorFacultad={filtrarPorFacultad}/>
-        </>
-    )
-}
+            <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <FormularioEstudiante
+              dato={dato}
+              setDato={setDato}
+              edicion={edicion}
+              setEdicion={setEdicion}
+              agregar={(estudianteNuevo) => {
+                agregarEstudiante(estudianteNuevo);
+              }}
+              editar={(estudianteEditado) => {
+                editarEstudiante(estudianteEditado);
+              }}
+              filtrarPorFacultad={filtrarPorFacultad}
+            />
+          </div>
+        </div>
+        <div className="row mt-5">
+          <div className="col-md-12">
+            <TablaEstudiante
+              listaEstudiantes={estudiantes}
+              editarEstudiante={(estudiante) => {
+                setDato(estudiante);
+                setEdicion(true);
+              }}
+              eliminarEstudiante={(estudiante) => {
+                eliminarEstudiante(estudiante);
+              }}
+              setFacultadSeleccionada={setFacultadSeleccionada}
+              filtrarPorFacultad={filtrarPorFacultad}
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
