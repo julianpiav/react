@@ -1,9 +1,6 @@
-
-
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { EstudiantesApp } from './EstudianteApp';
+import { BibliotecaApp } from './BibliotecaApp';
 import 'bootstrap/dist/css/bootstrap.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(<EstudiantesApp/>)
+ReactDOM.createRoot(document.getElementById('root')).render(<BibliotecaApp/>)
